@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+  <style>
+    .card { fill:#fff; stroke:#e6eef8; rx:8 }
+    .label { font: 600 12px 'Segoe UI', Roboto, Arial; fill:#0f172a }
+    .small { font: 400 11px 'Segoe UI', Roboto, Arial; fill:#475569 }
+  </style>
+
+  <!-- Row 1 -->
+  <g transform="translate(20,20)">
+    <rect x="0" y="0" width="150" height="60" class="card"/>
+    <circle cx="24" cy="30" r="16" fill="#339933"/>
+    <text x="52" y="36" class="label">Node.js</text>
+
+    <rect x="170" y="0" width="150" height="60" class="card"/>
+    <rect x="182" y="10" width="32" height="32" rx="6" fill="#E0234E"/>
+    <text x="224" y="36" class="label">NestJS</text>
+
+    <rect x="340" y="0" width="150" height="60" class="card"/>
+    <rect x="352" y="10" width="32" height="32" rx="4" fill="#3178c6"/>
+    <text x="394" y="36" class="label">TypeScript</text>
+
+    <rect x="510" y="0" width="150" height="60" class="card"/>
+    <rect x="522" y="10" width="32" height="32" rx="4" fill="#47A248"/>
+    <text x="564" y="36" class="label">MongoDB</text>
+
+    <rect x="680" y="0" width="150" height="60" class="card"/>
+    <rect x="692" y="10" width="32" height="32" rx="6" fill="#FF6600"/>
+    <text x="734" y="36" class="label">RabbitMQ</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(20,100)">
+    <rect x="0" y="0" width="150" height="60" class="card"/>
+    <rect x="12" y="8" width="32" height="32" rx="6" fill="#61DAFB"/>
+    <text x="54" y="36" class="label">React</text>
+
+    <rect x="170" y="0" width="150" height="60" class="card"/>
+    <rect x="182" y="8" width="32" height="32" rx="6" fill="#2496ED"/>
+    <text x="224" y="36" class="label">Docker</text>
+
+    <rect x="340" y="0" width="150" height="60" class="card"/>
+    <rect x="352" y="8" width="32" height="32" rx="6" fill="#326CE5"/>
+    <text x="394" y="36" class="label">Kubernetes</text>
+
+    <rect x="510" y="0" width="150" height="60" class="card"/>
+    <rect x="522" y="8" width="32" height="32" rx="6" fill="#FF9900"/>
+    <text x="564" y="36" class="label">AWS</text>
+
+    <rect x="680" y="0" width="150" height="60" class="card"/>
+    <rect x="692" y="8" width="32" height="32" rx="6" fill="#6F42C1"/>
+    <text x="734" y="36" class="label">Terraform</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(20,180)">
+    <rect x="0" y="0" width="150" height="34" class="card"/>
+    <text x="12" y="22" class="label">GitHub Actions • CI/CD</text>
+
+    <rect x="170" y="0" width="150" height="34" class="card"/>
+    <text x="182" y="22" class="label">Jest • Testing</text>
+
+    <rect x="340" y="0" width="150" height="34" class="card"/>
+    <text x="352" y="22" class="label">Socket.IO • Realtime</text>
+
+    <rect x="510" y="0" width="320" height="34" class="card"/>
+    <text x="522" y="22" class="label">ECR • S3 • CloudFront • CloudWatch • SNS</text>
+  </g>
+</svg>

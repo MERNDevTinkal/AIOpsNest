@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-worker-deployment
+  labels:
+    app: email-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-worker
+  template:
+    metadata:
+      labels:
+        app: email-worker
+    spec:
+      containers:
+        - name: email-worker
+          image: "<ECR_REPO>/email-worker:latest"
+          env:
+            - name: RABBITMQ_URL
+              value: "amqp://rabbitmq:5672"
+            - name: EMAIL_ENABLED
+              value: "false"
+            - name: AUTH_URL
+              value: "http://auth-service:3001"
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"

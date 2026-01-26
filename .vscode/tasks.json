@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compose: Up",
+      "type": "shell",
+      "command": "npm run compose:up",
+      "problemMatcher": []
+    },
+    {
+      "label": "Compose: Down",
+      "type": "shell",
+      "command": "npm run compose:down",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <style>
+    .box{fill:#fff;stroke:#cbd5e1;stroke-width:1;rx:8}
+    .title{font:700 13px 'Segoe UI', Roboto, Arial; fill:#0f172a}
+    .small{font:400 12px 'Segoe UI', Roboto, Arial; fill:#475569}
+    .cloud{fill:#f8fafc;stroke:#e6eef8}
+    .arrow{stroke:#0f172a;stroke-width:1.6;fill:none}
+  </style>
+
+  <!-- VPC / Cloud -->
+  <rect x="12" y="12" width="1176" height="696" rx="12" class="cloud" />
+  <text x="28" y="36" class="title">Cloud Environment (AWS)</text>
+
+  <!-- Front/Edge -->
+  <g transform="translate(40,64)">
+    <rect x="0" y="0" width="260" height="84" class="box" />
+    <text x="18" y="28" class="title">CloudFront / S3</text>
+    <text x="18" y="48" class="small">Static frontend + CDN</text>
+
+    <rect x="0" y="104" width="260" height="84" class="box" />
+    <text x="18" y="128" class="title">Load Balancer / API GW</text>
+    <text x="18" y="148" class="small">Ingress to cluster</text>
+  </g>
+
+  <!-- EKS cluster -->
+  <g transform="translate(340,64)">
+    <rect x="0" y="0" width="780" height="520" rx="8" class="box" />
+    <text x="16" y="24" class="title">EKS Cluster (Pods)</text>
+
+    <!-- Pods rows -->
+    <rect x="16" y="44" width="220" height="80" class="box" />
+    <text x="36" y="66" class="title">Auth Service</text>
+    <text x="36" y="86" class="small">JWT, login, register</text>
+
+    <rect x="260" y="44" width="220" height="80" class="box" />
+    <text x="280" y="66" class="title">Users Service</text>
+    <text x="280" y="86" class="small">Profile CRUD</text>
+
+    <rect x="504" y="44" width="250" height="80" class="box" />
+    <text x="524" y="66" class="title">Realtime</text>
+    <text x="524" y="86" class="small">Webhook receiver & Socket.IO</text>
+
+    <rect x="16" y="144" width="220" height="80" class="box" />
+    <text x="36" y="166" class="title">Email Worker</text>
+    <text x="36" y="186" class="small">Consumes user.created → SMTP/SES</text>
+
+    <rect x="260" y="144" width="220" height="80" class="box" />
+    <text x="280" y="166" class="title">AI-Ops Coordinator</text>
+    <text x="280" y="186" class="small">Agents, voting, PR suggestions</text>
+
+    <rect x="504" y="144" width="250" height="80" class="box" />
+    <text x="524" y="166" class="title">Background Jobs</text>
+    <text x="524" y="186" class="small">Retry, DLQ, scheduled tasks</text>
+
+    <!-- Datastore & MQ -->
+    <rect x="16" y="260" width="220" height="80" class="box" />
+    <text x="36" y="282" class="title">MongoDB</text>
+    <text x="36" y="302" class="small">Primary datastore</text>
+
+    <rect x="260" y="260" width="220" height="80" class="box" />
+    <text x="280" y="282" class="title">RabbitMQ / Amazon MQ</text>
+    <text x="280" y="302" class="small">Events, DLQ, retry</text>
+
+    <rect x="504" y="260" width="250" height="80" class="box" />
+    <text x="524" y="282" class="title">Redis (optional)</text>
+    <text x="524" y="302" class="small">Caching, rate-limiting</text>
+
+    <!-- Metrics & logs -->
+    <rect x="260" y="360" width="220" height="80" class="box" />
+    <text x="280" y="382" class="title">CloudWatch / SNS</text>
+    <text x="280" y="402" class="small">Metrics & Alerts</text>
+
+    <rect x="504" y="360" width="250" height="80" class="box" />
+    <text x="524" y="382" class="title">S3 (Backups)</text>
+    <text x="524" y="402" class="small">Snapshots, archives</text>
+
+  </g>
+
+  <!-- External systems and CI/CD -->
+  <g transform="translate(40,420)">
+    <rect x="0" y="0" width="260" height="72" class="box" />
+    <text x="18" y="26" class="title">GitHub Actions / CI</text>
+    <text x="18" y="46" class="small">Build → Test → ECR push → Deploy</text>
+
+    <rect x="300" y="0" width="260" height="72" class="box" />
+    <text x="318" y="26" class="title">Terraform</text>
+    <text x="318" y="46" class="small">Provision VPC, EKS, S3, SNS, SES</text>
+  </g>
+
+  <!-- Frontend path arrow -->
+  <path d="M300 120 L340 120" class="arrow" marker-end="url(#arrow)"/>
+  <path d="M260 112 L340 112" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- Auth → MQ arrow -->
+  <path d="M420 100 L480 160" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- MQ → Email Worker arrow -->
+  <path d="M480 200 L420 200" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- Realtime webhook arrow -->
+  <path d="M720 100 L780 100" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- Metrics arrow -->
+  <path d="M620 340 L430 400" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- Def arrowhead -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <!-- Labels at bottom -->
+  <text x="40" y="700" class="small">Diagram: high-level architecture — adapt manifests and Terraform for your environment</text>
+</svg>

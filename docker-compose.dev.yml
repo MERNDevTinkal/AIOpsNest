@@ -1,0 +1,83 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/nest_auth_db
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - PORT=3001
+    depends_on:
+      - mongo
+      - rabbitmq
+    ports:
+      - "3001:3001"
+
+  realtime:
+    build:
+      context: .
+      dockerfile: ./apps/realtime/Dockerfile
+    environment:
+      - PORT=4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - rabbitmq
+
+  users:
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/nest_auth_db
+      - PORT=3002
+    depends_on:
+      - mongo
+    ports:
+      - "3002:3002"
+
+  email-worker:
+    build:
+      context: .
+      dockerfile: ./apps/email-worker/Dockerfile
+    environment:
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - EMAIL_ENABLED=false
+      - SMTP_HOST=${SMTP_HOST:-""}
+      - SMTP_PORT=${SMTP_PORT:-""}
+      - EMAIL_FROM=${EMAIL_FROM:-""}
+      - AUTH_URL=http://auth:3001
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3010:3010"
+
+  gateway:
+    build:
+      context: ./apps/gateway
+    environment:
+      - PORT=3000
+    depends_on:
+      - auth
+      - users
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo-data:
+    driver: local

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+  <style>
+    .box { fill:#f8fafc; stroke:#0f172a; stroke-width:1; rx:6 }
+    .title { font: 600 16px 'Segoe UI', Roboto, Arial; fill:#0f172a }
+    .small { font: 400 12px 'Segoe UI', Roboto, Arial; fill:#0f172a }
+    .arrow { stroke:#0f172a; stroke-width:2; fill:none }
+  </style>
+
+  <!-- Gateway -->
+  <rect x="20" y="30" width="180" height="80" class="box" />
+  <text x="30" y="54" class="title">API Gateway</text>
+  <text x="30" y="74" class="small">Proxy / Aggregation</text>
+
+  <!-- Auth -->
+  <rect x="220" y="10" width="180" height="120" class="box" />
+  <text x="240" y="44" class="title">Auth Service</text>
+  <text x="240" y="64" class="small">JWT, Refresh tokens, Email verification</text>
+
+  <!-- Users -->
+  <rect x="220" y="150" width="180" height="80" class="box" />
+  <text x="240" y="174" class="title">Users Service</text>
+  <text x="240" y="194" class="small">Profiles, CRUD</text>
+
+  <!-- Realtime -->
+  <rect x="440" y="30" width="180" height="80" class="box" />
+  <text x="460" y="54" class="title">Realtime</text>
+  <text x="460" y="74" class="small">Webhook receiver → Socket.IO</text>
+
+  <!-- Email Worker -->
+  <rect x="660" y="10" width="180" height="120" class="box" />
+  <text x="680" y="44" class="title">Email Worker</text>
+  <text x="680" y="64" class="small">SMTP / SES + DLQ</text>
+
+  <!-- Messaging -->
+  <rect x="420" y="150" width="180" height="80" class="box" />
+  <text x="440" y="174" class="title">RabbitMQ / MQ</text>
+  <text x="440" y="194" class="small">Events, DLQ, Retry</text>
+
+  <!-- AI-Ops -->
+  <rect x="660" y="150" width="180" height="80" class="box" />
+  <text x="680" y="174" class="title">AI-Ops</text>
+  <text x="680" y="194" class="small">Coordinator, Agents, PRs</text>
+
+  <!-- DB -->
+  <rect x="20" y="150" width="180" height="80" class="box" />
+  <text x="30" y="174" class="title">MongoDB</text>
+  <text x="30" y="194" class="small">Mongoose</text>
+
+  <!-- Arrows -->
+  <path d="M200 70 L220 70" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M400 70 L440 70" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M520 70 L660 70" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M100 110 L100 150" class="arrow" marker-end="url(#arrowhead)" />
+  <path d="M340 110 L340 150" class="arrow" marker-end="url(#arrowhead)" />
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0f172a" />
+    </marker>
+  </defs>
+</svg>

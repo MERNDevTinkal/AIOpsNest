@@ -1,0 +1,17 @@
+[Unit]
+Description=Periodic backup to S3 (backup-to-s3.sh)
+After=network.target
+
+[Service]
+Type=simple
+# Recommended: place environment variables in /etc/backup-to-s3.env with KEY=VALUE lines
+# EnvironmentFile=/etc/backup-to-s3.env
+# Example file contents:
+# BUCKET_NAME=<BUCKET_NAME> (set in /etc/backup-to-s3.env)
+# AWS_REGION=us-east-1
+ExecStart=/home/tinkal/Downloads/server/scripts/backup-to-s3.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+{
+  "name": "@apps/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start:dev": "ts-node src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc -p .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "@types/express": "^4.17.17"
+  }
+}
