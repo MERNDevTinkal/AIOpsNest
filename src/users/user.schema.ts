@@ -23,7 +23,7 @@ export class User {
   @Prop({ type: String, required: false })
   refreshToken?: string; // hashed refresh token
 
-  @Prop({ default: [] })
+  @Prop({ type: [String], default: ['user'] })
   roles: string[];
 }
 

@@ -57,7 +57,7 @@ export class AuthService {
   async login(user: any) {
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
-    const payload = { sub: user._id.toString(), email: user.email };
+    const payload = { sub: user._id.toString(), email: user.email, roles: user.roles };
 
     const accessToken = await this.jwtService.signAsync(payload, {
       secret: this.configService.get<string>('jwt.accessTokenSecret'),
@@ -89,7 +89,7 @@ export class AuthService {
       if (!matches) throw new UnauthorizedException('Invalid refresh token');
 
       // issue new tokens
-      const newPayload = { sub: user._id.toString(), email: user.email };
+      const newPayload = { sub: user._id.toString(), email: user.email, roles: user.roles };
       const newAccess = await this.jwtService.signAsync(newPayload, {
         secret: this.configService.get<string>('jwt.accessTokenSecret'),
         expiresIn: this.configService.get<string>('jwt.accessTokenExpiration'),
