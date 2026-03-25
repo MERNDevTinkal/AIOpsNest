@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import configuration from '../../src/config/configuration';
 import { AuthModule } from '../../src/auth/auth.module';
 import { UsersModule } from '../../src/users/users.module';
+import { CatalogModule } from '../../src/catalog/catalog.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { UsersModule } from '../../src/users/users.module';
     MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/nest_auth_db'),
     AuthModule,
     UsersModule,
+    CatalogModule,
   ],
 })
 export class AppModule {}
