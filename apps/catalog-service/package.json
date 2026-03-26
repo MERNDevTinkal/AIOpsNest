@@ -1,16 +1,16 @@
 {
-  "name": "@apps/users",
+  "name": "@apps/catalog-service",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start:dev": "nest start --watch",
     "build": "nest build",
-    "start": "node dist/main.js",
-    "test": "jest"
+    "start": "node dist/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.0.0",
     "@nestjs/config": "^3.0.0",
     "@nestjs/mongoose": "^11.0.0",
     "mongoose": "^7.0.0",
