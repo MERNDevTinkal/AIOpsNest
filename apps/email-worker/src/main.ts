@@ -1,4 +1,4 @@
-import { consumeWithRetries } from '../../src/common/messaging';
+import { consumeWithRetries } from '../../../src/common/messaging';
 import * as nodemailer from 'nodemailer';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import * as dotenv from 'dotenv';
