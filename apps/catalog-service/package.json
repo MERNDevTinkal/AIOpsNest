@@ -1,12 +1,11 @@
 {
-  "name": "@apps/auth",
+  "name": "@apps/catalog-service",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start:dev": "nest start --watch",
     "build": "nest build",
-    "start": "node dist/main.js",
-    "test": "jest"
+    "start": "node dist/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -14,11 +13,8 @@
     "@nestjs/jwt": "^10.0.0",
     "@nestjs/config": "^3.0.0",
     "@nestjs/mongoose": "^11.0.0",
-    "bcrypt": "^5.1.0",
     "mongoose": "^7.0.0",
     "class-validator": "^0.14.0",
-    "class-transformer": "^0.5.1",
-    "dotenv": "^16.0.0",
-    "amqplib": "^0.10.3"
+    "class-transformer": "^0.5.1"
   }
 }
