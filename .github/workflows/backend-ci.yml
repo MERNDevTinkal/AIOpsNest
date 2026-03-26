@@ -70,6 +70,12 @@ jobs:
           context: ./apps/email-worker
           push: true
           tags: ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPO_EMAIL_WORKER }}:latest
+      - name: Build and push catalog image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/catalog-service
+          push: true
+          tags: ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPO_CATALOG }}:latest
 
   terraform-plan:
     name: Terraform Plan

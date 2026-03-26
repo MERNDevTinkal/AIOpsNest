@@ -4,7 +4,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 const app = express();
 
 app.use('/auth', createProxyMiddleware({ target: 'http://auth:3001', changeOrigin: true, pathRewrite: { '^/auth': '' } }));
-app.use('/catalog', createProxyMiddleware({ target: 'http://auth:3001', changeOrigin: true, pathRewrite: { '^/catalog': '/catalog' } }));
+app.use('/catalog', createProxyMiddleware({ target: 'http://catalog:3003', changeOrigin: true, pathRewrite: { '^/catalog': '/catalog' } }));
 app.use('/users', createProxyMiddleware({ target: 'http://users:3002', changeOrigin: true, pathRewrite: { '^/users': '' } }));
 
 app.get('/', (req, res) => res.send('Gateway running'));
