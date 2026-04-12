@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 
 type ObjEvent = {
@@ -15,6 +15,8 @@ export default function Realtime() {
   const [objects, setObjects] = useState<Record<string, ObjEvent>>({});
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  const objectList = useMemo(() => Object.values(objects), [objects]);
+
   useEffect(() => {
     const socket = io((import.meta.env.VITE_REALTIME_URL as string) || 'http://localhost:4000/realtime');
     socket.on('object.update', (e: any) => {
@@ -29,7 +31,7 @@ export default function Realtime() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    Object.values(objects).forEach((o) => {
+    objectList.forEach((o) => {
       const px = o.x;
       const py = o.y;
       ctx.beginPath();
@@ -39,7 +41,7 @@ export default function Realtime() {
       ctx.fillStyle = 'black';
       ctx.fillText(`${o.id} s:${o.speed.toFixed(2)} d:${o.totalDistance.toFixed(2)}`, px + 12, py);
     });
-  }, [objects]);
+  }, [objectList]);
 
   return (
     <div>
@@ -48,7 +50,7 @@ export default function Realtime() {
       <div className="mt-4">
         <h3>Objects</h3>
         <ul>
-          {Object.values(objects).map((o) => (
+          {objectList.map((o) => (
             <li key={o.id}>
               {o.id} — speed: {o.speed.toFixed(2)} — distance: {o.totalDistance.toFixed(2)}
             </li>
