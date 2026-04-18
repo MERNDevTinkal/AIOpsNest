@@ -76,7 +76,10 @@ resource "aws_iam_policy" "backup_policy" {
       {
         Effect = "Allow",
         Action = ["s3:PutObject", "s3:ListBucket", "s3:DeleteObject"],
-        Resource = ["arn:aws:s3:::${var.s3_bucket_name}", "arn:aws:s3:::${var.s3_bucket_name}/${var.bucket_prefix}/*"]
+        Resource = [
+          aws_s3_bucket.backup_bucket.arn,
+          "${aws_s3_bucket.backup_bucket.arn}/${var.bucket_prefix}/*"
+        ]
       },
       {
         Effect = "Allow",

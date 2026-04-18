@@ -169,3 +169,49 @@ resource "aws_cloudfront_distribution" "frontend_cdn" {
 
   tags = { Environment = var.environment }
 }
+
+# S3 bucket for backups
+resource "aws_s3_bucket" "backup_bucket" {
+  bucket = var.s3_bucket_name
+  tags   = { Environment = var.environment }
+}
+
+# Enable versioning for backup bucket
+resource "aws_s3_bucket_versioning" "backup_versioning" {
+  bucket = aws_s3_bucket.backup_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+# S3 lifecycle configuration for backups
+resource "aws_s3_bucket_lifecycle_configuration" "backup_lifecycle" {
+  bucket = aws_s3_bucket.backup_bucket.id
+
+  rule {
+    id     = "archive-to-glacier"
+    status = "Enabled"
+
+    filter {
+      prefix = "${var.bucket_prefix}/"
+    }
+
+    transition {
+      days          = 30
+      storage_class = "GLACIER"
+    }
+
+    expiration {
+      days = 365
+    }
+
+    noncurrent_version_transition {
+      noncurrent_days = 30
+      storage_class   = "GLACIER"
+    }
+
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+  }
+}
