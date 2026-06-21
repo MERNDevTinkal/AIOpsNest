@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { runCommand } from '../lib/shell';
 
 export class LintFixAgent {
   id = 'lint-fix-agent';
@@ -11,19 +11,10 @@ export class LintFixAgent {
 
     try {
       // Run eslint --fix (dry run in this environment)
-      const output = await this.runCommand('echo eslint --fix');
+      const output = await runCommand('echo', ['eslint --fix']);
       return { approved: true, message: `ran-fix: ${output}` };
     } catch (err: any) {
       return { approved: false, message: `fix-failed: ${err.message}` };
     }
-  }
-
-  runCommand(cmd: string) {
-    return new Promise<string>((resolve, reject) => {
-      exec(cmd, { cwd: process.cwd() }, (err, stdout, stderr) => {
-        if (err) return reject(err);
-        resolve(stdout || stderr);
-      });
-    });
   }
 }
