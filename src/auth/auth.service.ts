@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { EmailService } from '../common/email.service';
+import { publish } from '../common/messaging';
 
 @Injectable()
 export class AuthService {
@@ -37,7 +38,7 @@ export class AuthService {
       // publish to RabbitMQ (app.events topic)
       // payload intentionally small to avoid leaking sensitive data
       const payload = { id: user._id.toString(), email: user.email, emailVerificationToken: verificationToken, createdAt: user.createdAt };
-      await import('../common/messaging').then((m) => m.publish('user.created', payload));
+      await publish('user.created', payload);
     } catch (err) {
       // don't fail registration on pubsub errors, but log
       console.error('Failed to publish user.created event', err);
