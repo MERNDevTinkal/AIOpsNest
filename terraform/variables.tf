@@ -82,3 +82,14 @@ variable "ses_from_domain" {
   type        = string
   default     = "example.com"
 }
+variable "s3_bucket_name" {
+  description = "S3 bucket name for backups"
+  type        = string
+  default     = "nest-auth-backups-staging"
+}
+
+variable "bucket_prefix" {
+  description = "S3 bucket prefix for backups"
+  type        = string
+  default     = "backups"
+}

@@ -120,7 +120,7 @@ Notes: If `npm` or `git` are not installed in your environment, install them loc
 - Harden observability with Prometheus/Grafana and distributed tracing (Jaeger).
 - Add Helm charts and Kustomize overlays for environments (dev/stage/prod).
 - Implement safe PR creation and automated patching in `apps/ai-ops` (hooks, tests, and dry-run validations).
-- Add S3 lifecycle rules and consider archival (Glacier) for long-term retention.
+- [x] Add S3 lifecycle rules and archival (Glacier) for long-term retention.
 
 ---
 
